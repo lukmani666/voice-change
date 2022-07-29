@@ -31,7 +31,7 @@ colors.forEach (function(v, i, a) {
     colorHTML += '<span style="background-color:' + v + ';">' + v + '<span>';
 });
 
-function voice() {
+document.body.onclick = function voice() {
     recognition.start();
     console.log('Ready to receive a color command.');
 }
