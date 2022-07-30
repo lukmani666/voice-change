@@ -22,13 +22,13 @@ recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
 var diagnostic = document.querySelector('.output');
-var bg = document.querySelector('html');
+var bg = document.querySelector('body');
 var mic = document.querySelector('#voiceout');
 
 var colorHTML = '';
 colors.forEach (function(v, i, a) {
     console.log(v, i);
-    colorHTML += '<span style="background-color:' + v + ';">' + v + '<span>';
+    colorHTML += '<span style="background-color:' + v + ';"> ' + v + '<span>';
 });
 
 document.body.onclick = function voice() {
@@ -37,14 +37,18 @@ document.body.onclick = function voice() {
 }
 
 recognition.onresult = function(event) {
-    var colors = event.results[0][0].transcript;
-    diagnostic.textContent = 'Result reveived: ' + colors + '.';
-    bg.style.backgroundColor = colors;
+    var color = event.results[0][0].transcript;
+    diagnostic.textContent = 'Result reveived: ' + color + '.';
+    bg.style.backgroundColor = color;
     console.log('confidence: ' + event.results[0][0].confidence);
 }
 
 recognition.onspeechend = function() {
     recognition.stop();
+}
+
+recognition.onnomatch = function(event){
+    diagnostic.textContent = "I didnt recognise that color." + event;
 }
 
 recognition.onerror = function(event) {
