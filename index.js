@@ -37,9 +37,9 @@ document.body.onclick = function voice() {
 }
 
 recognition.onresult = function(event) {
-    var color = event.results[0][0].transcript;
-    diagnostic.textContent = 'Result reveived: ' + color + '.';
-    bg.style.backgroundColor = color;
+    var colors = event.results[0][0].transcript;
+    diagnostic.textContent = 'Result reveived: ' + colors + '.';
+    bg.style.backgroundColor = colors;
     console.log('confidence: ' + event.results[0][0].confidence);
 }
 
